@@ -1,0 +1,21 @@
+{
+    "port": 3000,
+    "smtp": {
+        "from": "",
+        "host": "smtp.bc.com",
+        "port": 587,
+        "secure": false,
+        "auth": {
+            "user": "bc@bc.com",
+            "pass": "123456"
+        }
+    },
+    "mediaPath": "http://52.77.121.171:3005/uploads/",
+    "mongoUrl": "mongodb://localhost:27017/portfolio-web",
+    "cookieSecret": "P>twUC2.9mturJN%fW(!esTwua:!e(Pu8bHfTXW grck3g9/J@*W3MuEB,FE#/=m",
+    "sessionSecret": "P>twUC2.9mturJN%fW(!ePGwua:!e(Pu8bHfTXW grck3g9/J@*W3MuEB,FE#/=m",
+    "authSecret": "TFqA$uc4hu5VV(NS*vF=f3$vaCsw6/3U/w%9yu)Py,#&w)kG2(pAgAP9@)3,uVqt",
+    "jwtTokenExpireIn": "30d",
+    "authSalt": "*vF=f3$waCsw6/3U/w%9yu)Py,#&w)kG2(mAgAP9@)3",
+    "smsApiKey": "btsl-user"
+}
