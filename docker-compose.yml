@@ -1,35 +1,32 @@
-version: '3'
+version: "3.8" # Specify the version of the Compose file
+
 services:
-    mongo:
-        image: mongo
-        environment:
-            - MONGO_INITDB_DATABASE=tmdb
-        volumes:
-            - mongodata:/data/db
-        ports:
-            - '27017-27019:27017-27019'
-        networks:
-            - app-network
-    dev:
-        image: node:12-alpine
-        volumes:
-            - ./docker/node_modules:/usr/src/service/node_modules
-            - .:/usr/src/service
-        environment:
-            - NODE_ENV=development
-        working_dir: /usr/src/service
-        command: npm run watch
-        ports:
-            - 3000:3000
-        networks:
-            - app-network
-        depends_on:
-            - mongo
+  server:
+    build:
+      context: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3005:3005"
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: report_portal
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
-    mongodata:
-        external: true
-
-networks:
-    app-network:
-        driver: bridge
+  db-data:

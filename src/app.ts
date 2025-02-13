@@ -43,7 +43,7 @@ const APP_CONFIG: Config = new Config(JSON.parse(fs.readFileSync(CONFIG_FILE).to
 // Initialize mongo db
 mongoInit(APP_CONFIG.mongoUrl);
 
-const app = Application.getInstance(APP_CONFIG, "/api/v1");
+const app = Application.getInstance(APP_CONFIG, "/api/v1"); // Singleton Design pattern
 
 app.viewDir("views");
 app.viewEngine("pug");
